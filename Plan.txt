@@ -1,0 +1,17 @@
+I will design objects as classes (e.g. a building class, a car class,
+etc.). The classes don't do any rendering work or have any functions
+associated with rendering--they're similar to the Bezier curve
+class from Assignment 2. They just calculate coordinates. They should
+also calculate normals to their surfaces, and they should really
+calculate them as the average of surrounding normals so we can at
+least do some nice Gouraud shading.
+
+The actual objects in the scene will be represented by Vertex Array
+Objects that hold on to Vertex buffer objects that have the coordinates,
+colors, and so on. 
+
+All the functions that go to GLUT will just be normal C-style global
+functions, possibly defined in a separate file from the main
+function. They may get a namespace (maybe the whole project will
+have a namespace). 
+
