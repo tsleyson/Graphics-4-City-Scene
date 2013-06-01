@@ -11,6 +11,8 @@
 #include <vector>
 #include "shaders.h"    // Now includes init_shaders.
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <map>
 #include "CityObject.h"
 using namespace std;
@@ -59,7 +61,7 @@ int main(int argc, char** argv)
     uniforms["samp"] = glGetUniformLocation(program, "samp");
     glUseProgram(0);
     
-    objects.push_back(new Building(vec3(0.0, 0.0, 0.0), 0.2, 10));
+    objects.push_back(new Building(vec3(0.0, 0.0, 0.0), 0.2, 30));
     
     glutMainLoop();
     
@@ -70,7 +72,7 @@ void render()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glUseProgram(program);
-    
+    glUniformMatrix4fv(uniforms["transform"], 1, GL_FALSE, glm::value_ptr(transform));
     for (vector<CityObject*>::iterator it = objects.begin();
          it != objects.end();
          ++it)
@@ -89,6 +91,24 @@ void key_action(unsigned char key, int x, int y)
     {
         case 'q':
             stop();
+        case 'a':
+            transform = glm::rotate(transform, 30.0f, vec3(1.0, 0.0, 0.0));
+            break;
+        case 'd':
+            transform = glm::rotate(transform, 30.0f, vec3(-1.0, 0.0, 0.0));
+            break;
+        case 'w':
+            transform = glm::rotate(transform, 30.0f, vec3(0.0, 1.0, 0.0));
+            break;
+        case 'x':
+            transform = glm::rotate(transform, 30.0f, vec3(0.0, -1.0, 0.0));
+            break;
+        case 's':
+            transform = glm::rotate(transform, 30.0f, vec3(0.0, 0.0, 1.0));
+            break;
+        case 'c':
+            transform = glm::rotate(transform, 30.0f, vec3(0.0, 0.0, -1.0));
+            break;
     }
 }
 

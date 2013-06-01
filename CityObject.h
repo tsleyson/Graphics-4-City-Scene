@@ -72,6 +72,8 @@ namespace City
       private:
       void push_line(vec3 first, float hinc, unsigned int height, 
         vector<vector<vec3> >& main);
+      void alternate_points(vector<vec3>::iterator&, 
+        vector<vec3>::iterator&, size_t);
       unsigned int texture;
       vector<Triangle> triangles;
       

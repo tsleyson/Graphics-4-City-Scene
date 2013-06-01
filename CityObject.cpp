@@ -2,6 +2,7 @@
 #include <cassert>
 #include <iostream>
 #include <math.h>
+#include <glm/gtc/matrix_transform.hpp>
 using std::cout;
 using std::endl;
 
@@ -47,10 +48,18 @@ namespace City
     vector<vec3> line;
     line.push_back(first);
     for (unsigned int i = 0; i < height; i++)
+    {
+        //cout << i << endl;
         line.push_back(vec3(first[0], first[1]+i*hinc, first[2]));
+    }
+    assert(line.size() > 2);
     main.push_back(line);
+    assert(main[main.size()-1].size() > 2);
   }
   
+  /* The mesh built by this function is based on ideas from the web site
+   * http://www.gamedev.net/topic/208950-help-vert-array-mesh-with-triangle_strip/
+   */
   void Building::build_mesh(vector<vector<vec3> >& starters)
   {
       /* The starters vector contains four lines; each line is a
@@ -61,11 +70,15 @@ namespace City
        * so we can calculate an averaged normal for each vertex and
        * do Gouraud shading.
        */
+    vector<vec3>::iterator left, right;
+    vector<vec3> c1, c2;
     for (int i = 1; i < 4; ++i)
     {
-        vector<vec3>::iterator left = starters.at(i-1).begin();
-        vector<vec3>::iterator right = starters.at(i).begin();
-        assert(starters.at(i-1).size() > 2 && starters.at(i).size() > 2);
+        c1 = starters.at(i-1);
+        c2 = starters.at(i);
+        left = c1.begin();
+        right = c2.begin();
+        assert(c1.size() > 2 && c2.size() > 2);
         
         // For making degenerate triangles; duplicate first point of
         // new second curve.
@@ -80,11 +93,11 @@ namespace City
         this->coordinates.push_back(*left);
         this->coordinates.push_back(*right);
         ++left; ++right;
-        for (; left != starters.at(i-1).end() && 
-                right != starters.at(i).end();
-                ++left, ++right)
+        for (; 
+             left != c1.end() && right != c2.end();
+             ++left, ++right)
         {
-            // Add the point from the left line, then add the triangle 
+            // Add the point from the left line, then add the triangle
             // formed by it and the previous two points. Do the same for
             // the right line.
             this->coordinates.push_back(*left);
@@ -103,6 +116,79 @@ namespace City
         size_t last = starters.at(i).size() - 1;
         this->coordinates.push_back(starters.at(i).at(last));
     }
+    // Now make the back and the top.
+    vector<vec3> last = starters[starters.size()-1],
+                 first = starters[0];
+    left = last.begin();
+    right = first.begin();
+    this->coordinates.push_back(*left);
+    this->coordinates.push_back(*right);
+    ++left; ++right;
+    this->coordinates.push_back(*left);
+    this->coordinates.push_back(*right);
+    ++left; ++right;
+    for (; 
+         left != last.end() && right != first.end();
+         ++left, ++right)
+    {
+        // Add the point from the left line, then add the triangle
+        // formed by it and the previous two points. Do the same for
+        // the right line.
+        this->coordinates.push_back(*left);
+        size_t size = coordinates.size();
+        this->triangles.push_back(Triangle(coordinates.at(size-3),
+            coordinates.at(size-2), coordinates.at(size-1)));
+        this->coordinates.push_back(*right);
+        ++size;
+        this->triangles.push_back(Triangle(coordinates.at(size-3),
+            coordinates.at(size-2), coordinates.at(size-1)));
+    }
+    // The top.
+    size_t end = starters[0].size() - 1;
+    this->coordinates.push_back(starters[0][end]);    // Bottom right.
+    this->coordinates.push_back(starters[1][end]);    // Top right.
+    this->coordinates.push_back(starters[3][end]);    // Bottom left.
+    this->coordinates.push_back(starters[2][end]);    // Top left.
+  }
+  
+
+  void alternate_points(vector<vec3>& c1, vector<vec3>& c2)
+  {
+    /* I made this function to prevent some code duplication, but figuring
+     * out exactly what to put inside is more complicated than I thought
+     * so for now I just concentrate on getting the code working.
+     
+    vector<vec3>::iterator left, right;
+    left = c1.begin(), right = c2.begin()
+    // For making degenerate triangles; duplicate first point of
+    // new second curve.
+    if (i > 1)
+        this->coordinates.push_back(*right);
+        
+    // Push the first two points so that every point in the loop
+    // forms a new triangle.
+    this->coordinates.push_back(*left);
+    this->coordinates.push_back(*right);
+    ++left; ++right;
+    this->coordinates.push_back(*left);
+    this->coordinates.push_back(*right);
+    ++left; ++right;
+    for (; 
+         left != c1.end() && right != c2.end();
+         ++left, ++right)
+    {
+        // Add the point from the left line, then add the triangle
+        // formed by it and the previous two points. Do the same for
+        // the right line.
+        this->coordinates.push_back(*left);
+        size_t size = coordinates.size();
+        this->triangles.push_back(Triangle(coordinates.at(size-3),
+            coordinates.at(size-2), coordinates.at(size-1)));
+        this->coordinates.push_back(*right);
+        ++size;
+        this->triangles.push_back(Triangle(coordinates.at(size-3),
+            coordinates.at(size-2), coordinates.at(size-1)));
+    }*/
   }
   
   void Building::calculate_normals()
@@ -115,7 +201,6 @@ namespace City
     // Remember: y = 0 is the ground. Assume that y = 0 in the top_left
     // vec. bottom_right is the bottom right point of the square that forms the
     // base of the building.
-    float height_increment = height / side_length;
     vector<vector<vec3> > starters;
     this->push_line(bottom_right, side_length, height, starters);
     
@@ -130,10 +215,11 @@ namespace City
     this->push_line(bottom_left, side_length, height, starters);
     
     this->build_mesh(starters);
-    /* debugging
-    this->coordinates.push_back(vec3(-0.5, 0.5, 0.0));
+    /* debugging 
     this->coordinates.push_back(vec3(-0.5, -0.5, 0.0));
-    this->coordinates.push_back(vec3(0.5, -0.5, 0.0));*/
+    this->coordinates.push_back(vec3(-0.5, 0.5, 0.0));
+    this->coordinates.push_back(vec3(0.5, -0.5, 0.0));
+    this->coordinates.push_back(vec3(0.5, 0.5, 0.0));*/
     // Initialize object coordinate matrix and vertex buffer that holds
     // vertices for this object.
     this->object_transform = mat4(1.0);
@@ -144,9 +230,7 @@ namespace City
     for (int i = 0; i < this->coordinates.size()*3; ++i)
         cout << glCoords[i] << endl;
     glBufferData(GL_ARRAY_BUFFER, this->coordinates.size()*3*sizeof(float),
-        glCoords, GL_STATIC_DRAW);/*
-    glBufferData(GL_ARRAY_BUFFER, starters[0].size()*3*sizeof(float),
-        starters[0].data(), GL_STATIC_DRAW);*/
+        glCoords, GL_STATIC_DRAW);
     delete [] glCoords;
   }
   
