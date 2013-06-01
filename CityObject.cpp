@@ -28,16 +28,16 @@ namespace City
 
   float* CityObject::flatten_coords()
   {
-    float* glCoords = new float[this->coordinates.size()*3];
+    vector<float>* glCoords = new vector<float>();
     for (unsigned int i = 0; i < this->coordinates.size(); i++)
     {
         vec3 point = this->coordinates.at(i);
         assert(!(isnan(point[0]) || isnan(point[1]) || isnan(point[2])));
-        glCoords[i] = point[0];
-        glCoords[i+1] = point[1];
-        glCoords[i+2] = point[2];
+        glCoords->push_back(point[0]);
+        glCoords->push_back(point[1]);
+        glCoords->push_back(point[2]);
     }
-    return glCoords;
+    return glCoords->data();
   }
   
 /* Building class's functions */

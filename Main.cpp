@@ -124,7 +124,7 @@ void init_OpenGL()
     checkExtensions();
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     
-    glEnable(GL_CULL_FACE);
+    //glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
 }
 
