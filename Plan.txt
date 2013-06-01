@@ -15,3 +15,33 @@ functions, possibly defined in a separate file from the main
 function. They may get a namespace (maybe the whole project will
 have a namespace). 
 
+More specific:
+
+Define class CityObject as a base class. It has methods for calculating
+normals and stores a current transformation matrix. It also has methods
+for rotating and scaling. It holds the coordinates for the
+current object in a vector. It uses an STL map to associate the triangles
+in its mesh with each other so we can calculate normals. It has a pure
+virtual function for rendering; it stores a buffer reference and the
+render function sets its buffer to be the active buffer and then calls
+glDrawArrays.
+
+As you form the mesh, maintain a list of triangles (make a class or
+struct or something). The triangle holds the three points that define
+it. Then calculate the normals for each vertex by looping over the
+list. If you find a triangle that contains the given vertex, calculate
+that triangle's normal and store it in a temporary data structure. When
+all of them have been found, average over them all and assign that as
+the normal of the vertex. 
+
+[We don't actually need transform because we can just set the vertex
+shader's transformation and then transform all the vertices when they
+go in for processing.]
+
+The variables for the shaders will be stored in two STL maps, one for
+the attributes and one for the uniforms. 
+
+
+By the way, if there's even close to enough time, it might be cool to
+have a blimp floating around. It shouldn't be too different from making
+a vase using Bezier curves.

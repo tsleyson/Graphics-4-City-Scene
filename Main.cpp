@@ -88,7 +88,7 @@ void key_action(unsigned char key, int x, int y)
     switch(key)
     {
         case 'q':
-            exit(0);
+            stop();
     }
 }
 
@@ -154,4 +154,10 @@ void checkExtensions()
     {
         std::cout << "ERROR: VBO extension not present." << std::endl;
     }    
+}
+
+void stop()
+{   
+    glDeleteProgram(program);
+    exit(0);
 }

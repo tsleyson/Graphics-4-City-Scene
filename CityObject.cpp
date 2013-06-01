@@ -160,7 +160,7 @@ namespace City
     glEnableVertexAttribArray(attributes["position"]);
     glVertexAttribPointer(attributes["position"], 3, GL_FLOAT, GL_FALSE,
         0, 0);
-    glDrawArrays(GL_LINE_STRIP, 0, this->coordinates.size());
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, this->coordinates.size());
   }
 
 }  // End namespace City.

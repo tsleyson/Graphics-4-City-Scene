@@ -82,6 +82,7 @@ namespace City
       public:
       Building(vec3 top_left, float side_length, unsigned int height);
         // The base must be square. No rectangles.
+      ~Building() { glDeleteBuffers(1, &this->vertex_buffer); }
       virtual void render(map<string, unsigned int>&, 
         map<string, unsigned int>&);
     };
