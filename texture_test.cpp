@@ -7,7 +7,7 @@
 #include <cassert>
 using namespace std;
 
-unsigned int buffer;
+unsigned int buffer[2];
 unsigned int normals_buffer;
 unsigned int textures_buffer;
 unsigned int texture;
@@ -77,16 +77,16 @@ void init_OpenGL()
     //glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
 }
-
-void init_shaders(char* vert, char* frag)
+/*
+void init_shaders(string vert, string frag)
 {
 		program = glCreateProgram();
 		int goodv, goods;
 		string v, f;
 		try
 		{
-			v = read_shader(vert);
-			f = read_shader(frag);
+			v = read_shader(vert.data());
+			f = read_shader(frag.data());
 		}
 		catch (std::runtime_error re)
 		{
@@ -112,7 +112,7 @@ void init_shaders(char* vert, char* frag)
 		assert(goods == GL_TRUE);
 
 		glLinkProgram(program);
-		/* Get handles to all needed attributes here */
+		/* Get handles to all needed attributes here 
 		glUseProgram(program);
 		in_Position = glGetAttribLocation(program, "in_Position");
 		in_Normal = glGetAttribLocation(program, "in_Normal");
@@ -121,7 +121,7 @@ void init_shaders(char* vert, char* frag)
         texon = glGetUniformLocation(program, "texon");
         cout << texsampl << " " << texon << endl;
 		glUseProgram(0);
-}
+}*/
 
 void start()
 {
@@ -138,16 +138,28 @@ void render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glUseProgram(program);
     
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, texture);
+    //glActiveTexture(GL_TEXTURE0);
+    //glBindTexture(GL_TEXTURE_2D, texture);
     
     /*glEnableVertexAttribArray(in_Position);
     glEnableVertexAttribArray(in_Tex);*/
     //cout << texsampl << " " << texon << endl;
     glUniform1i(texsampl, 0);
     glUniform1i(texon, 1);
-    //glBindBuffer(GL_ARRAY_BUFFER, buffer);
+    // First draw textured square in the top right.
+    glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
+    glEnableVertexAttribArray(in_Position);
+    glVertexAttribPointer(in_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);
     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    //glDrawArrays(GL_TRIANGLE_FAN, 4, 4);
+    // Now draw untextured triangle thing in the bottom left.
+    //glUniform1i(texon, 0);
+    glBindBuffer(GL_ARRAY_BUFFER, buffer[1]);
+    glEnableVertexAttribArray(in_Position);
+    glVertexAttribPointer(in_Position, 2, GL_FLOAT, GL_FALSE, 0, 
+        (void*)(8*sizeof(float)));
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    
     glUseProgram(0);
     glutSwapBuffers();
 	glFlush();
@@ -163,8 +175,15 @@ int main(int argc, char** argv)
     glutIdleFunc(update);
 
 	init_OpenGL();
-	init_shaders("vase.vert", "vase.frag");
-
+	init_shaders("test.vert", "test.frag", program);
+    glUseProgram(program);
+    in_Position = glGetAttribLocation(program, "in_Position");
+    in_Normal = glGetAttribLocation(program, "in_Normal");
+    in_Tex = glGetAttribLocation(program, "in_Tex");
+    texsampl = glGetUniformLocation(program, "texsampl");
+    texon = glGetUniformLocation(program, "texon");
+    cout << texsampl << " " << texon << endl;
+    glUseProgram(0);
     float data[] = {
     //vertices
     //Bottom face
@@ -273,31 +292,57 @@ int main(int argc, char** argv)
      0.0, 0.0,  
      1.0, 0.0,  
      1.0, 1.0,  
-     0.0, 1.0, 
-     // Texture coordinates
-     0.0, 0.0,  
-     1.0, 0.0,  
-     1.0, 1.0,  
      0.0, 1.0,
+     // other front
+     -1.0, 1.0,
+     0.0, 1.0,
+     0.0, 0.0,
+     -1.0, 0.0
    }; 
-	glGenBuffers(1, &buffer);
-	glBindBuffer(GL_ARRAY_BUFFER, buffer);
-	glBufferData(GL_ARRAY_BUFFER, 8*sizeof(float), 
+	glGenBuffers(1, &buffer[0]);
+	glBindBuffer(GL_ARRAY_BUFFER, buffer[0]);
+	glBufferData(GL_ARRAY_BUFFER, 16*sizeof(float), 
         cubedat, GL_STATIC_DRAW);
 	glEnableVertexAttribArray(in_Position);
 	glVertexAttribPointer(in_Position, 2, GL_FLOAT, GL_FALSE, 0, 0);/*
 	glEnableVertexAttribArray(in_Normal);
 	glVertexAttribPointer(in_Normal, 3, GL_FLOAT, GL_FALSE, 0,
         (void*)(108*sizeof(float)));*/
+    GLfloat fandat[] = {
+      -1.0, -1.0,
+      0.0, -1.0,
+      0.0, -0.5,
+      -0.5, 0.0,
+      -1.0, 0.0  
+    };
+    glGenBuffers(1, &buffer[1]);
+    glBindBuffer(GL_ARRAY_BUFFER, buffer[1]);
+    glBufferData(GL_ARRAY_BUFFER, 8*sizeof(float), cubedat, GL_STATIC_DRAW);
+
+
+         // Texture coordinates
+    GLfloat texdat[8] = {
+     0, 0,
+     1, 0,  
+     1, 1,
+     0, 1,
+    };
+    glGenBuffers(1, &textures_buffer);
+	glBindBuffer(GL_ARRAY_BUFFER, textures_buffer);
+	glBufferData(GL_ARRAY_BUFFER, 8*sizeof(float), 
+        texdat, GL_STATIC_DRAW);
     glEnableVertexAttribArray(in_Tex);
-    glVertexAttribPointer(in_Tex, 2, GL_FLOAT, GL_FALSE, 0, (void*)(8*sizeof(float)));
+    glVertexAttribPointer(in_Tex, 2, GL_FLOAT, GL_FALSE, 0, 0);
     
     Image cubetex;
     assert(ImageLoad("post-office-small.bmp", &cubetex));
     glActiveTexture(GL_TEXTURE0);
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexImage2D(GL_TEXTURE_2D, // the current 2D texture
 	       0, // Mipmap level
 	       GL_RGB, //internal format for texture
@@ -308,13 +353,6 @@ int main(int argc, char** argv)
 	       GL_UNSIGNED_BYTE, // type of incoming data
 	       cubetex.data // pointer to the data
 	       );
-    /*
-    glGenBuffers(1, &textures_buffer);  
-    glBindBuffer(GL_ARRAY_BUFFER, textures_buffer);
-    glBufferData(GL_ARRAY_BUFFER, 8*sizeof(float), cubedat, GL_STATIC_DRAW);*/
-
-    
-    
 	start();
 	return 0;
 }
