@@ -59,6 +59,7 @@ int main(int argc, char** argv)
     vertex_attributes["tex_coord"] = glGetAttribLocation(program, "tex_coord");
     uniforms["transform"] = glGetUniformLocation(program, "transform");
     uniforms["samp"] = glGetUniformLocation(program, "samp");
+    uniforms["light_pos"] = glGetUniformLocation(program, "light_pos");
     glUseProgram(0);
     
     objects.push_back(new Building(vec3(0.0, 0.0, 0.0), 0.2, 30));
@@ -73,6 +74,7 @@ void render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glUseProgram(program);
     glUniformMatrix4fv(uniforms["transform"], 1, GL_FALSE, glm::value_ptr(transform));
+    glUniform3f(uniforms["light_pos"], 0.5, 0.5, -0.3);
     for (vector<CityObject*>::iterator it = objects.begin();
          it != objects.end();
          ++it)
