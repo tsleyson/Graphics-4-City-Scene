@@ -59,7 +59,6 @@ int main(int argc, char** argv)
     vertex_attributes["tex_coord"] = glGetAttribLocation(program, "tex_coord");
     uniforms["transform"] = glGetUniformLocation(program, "transform");
     uniforms["samp"] = glGetUniformLocation(program, "samp");
-    uniforms["light_pos"] = glGetUniformLocation(program, "light_pos");
     glUseProgram(0);
     
     objects.push_back(new Building(vec3(0.0, 0.0, 0.0), 0.2, 30));

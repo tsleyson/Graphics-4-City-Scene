@@ -41,9 +41,9 @@ namespace City
         protected:
         glm::mat4 object_transform;
         vector<glm::vec3> coordinates;  // The points defining the mesh.
-        unsigned int vertex_buffer, normal_buffer;
+        unsigned int vertex_buffer;
         
-        float* flatten_coords(vector<vec3> coords);
+        float* flatten_coords();
         virtual void build_mesh(vector<vector<vec3> >&) = 0;
         virtual void calculate_normals() = 0;
             /* If it doesn't want to use anything nonlocal, just
@@ -76,7 +76,6 @@ namespace City
         vector<vec3>::iterator&, size_t);
       unsigned int texture;
       vector<Triangle> triangles;
-      vector<vec3> average_normals;
       
       protected:
       virtual void build_mesh(vector<vector<vec3> >& starters);
@@ -85,8 +84,7 @@ namespace City
       public:
       Building(vec3 top_left, float side_length, unsigned int height);
         // The base must be square. No rectangles.
-      ~Building() { glDeleteBuffers(1, &this->vertex_buffer); 
-                     glDeleteBuffers(1, &this->normal_buffer); }
+      ~Building() { glDeleteBuffers(1, &this->vertex_buffer); }
       virtual void render(map<string, unsigned int>&, 
         map<string, unsigned int>&);
     };

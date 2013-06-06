@@ -27,10 +27,10 @@ namespace City
     }
 
 
-  float* CityObject::flatten_coords(vector<vec3> coords)
+  float* CityObject::flatten_coords()
   {
     vector<float>* glCoords = new vector<float>();
-    for (unsigned int i = 0; i < coords.size(); i++)
+    for (unsigned int i = 0; i < this->coordinates.size(); i++)
     {
         vec3 point = this->coordinates.at(i);
         assert(!(isnan(point[0]) || isnan(point[1]) || isnan(point[2])));
@@ -149,10 +149,6 @@ namespace City
     this->coordinates.push_back(starters[1][end]);    // Top right.
     this->coordinates.push_back(starters[3][end]);    // Bottom left.
     this->coordinates.push_back(starters[2][end]);    // Top left.
-    this->triangles.push_back(Triangle(starters[0][end], starters[1][end],
-        starters[3][end]));
-    this->triangles.push_back(Triangle(starters[1][end], starters[3][end],
-        starters[2][end]));
   }
   
 
@@ -197,33 +193,7 @@ namespace City
   
   void Building::calculate_normals()
   {
-    // Calculates an averaged normal for each vertex by finding all
-    // the triangles a vertex is part of and averaging their standard
-    // normals.
-    for (vector<vec3>::iterator ptit = this->coordinates.begin();
-         ptit != this->coordinates.end();
-         ++ptit)
-    {
-        vector<vec3> adj_normals;
-        for (vector<Triangle>::iterator trit = this->triangles.begin();
-             trit != this->triangles.end();
-             ++trit)
-        {
-            if (trit->contains(*ptit))
-                adj_normals.push_back(trit->standard_normal);
-        }
-        
-        vec3 avgd = vec3(0.0, 0.0, 0.0);
-        for (vector<vec3>::iterator nit = adj_normals.begin();
-             nit != adj_normals.end();
-             ++nit)
-        {
-            avgd += *nit;
-        }
-        avgd /= vec3(adj_normals.size(), adj_normals.size(), adj_normals.size());
-        avgd = glm::normalize(avgd);
-        this->average_normals.push_back(avgd);
-    }
+      
   }
   
   Building::Building(vec3 bottom_right, float side_length, size_t height)
@@ -250,11 +220,10 @@ namespace City
     this->object_transform = mat4(1.0);
     glGenBuffers(1, &this->vertex_buffer);
     glBindBuffer(GL_ARRAY_BUFFER, this->vertex_buffer);
-    float* glCoords = this->flatten_coords(this->coordinates);
+    float* glCoords = this->flatten_coords();
     // debugging
     for (int i = 0; i < this->coordinates.size()*3; ++i)
         cout << glCoords[i] << endl;
-    // end debugging
     glBufferData(GL_ARRAY_BUFFER, this->coordinates.size()*3*sizeof(float),
         glCoords, GL_STATIC_DRAW);
     delete [] glCoords;
@@ -280,16 +249,8 @@ namespace City
   void Building::render(map<string, unsigned int>& attributes, 
             map<string, unsigned int>& uniforms)
   {
-    // Precondition on this method:
-    assert(attributes.count("position") && attributes.count("normal"));
-
-    // Send the normals into the vertex shader.
-    glBindBuffer(GL_ARRAY_BUFFER, this->normal_buffer);
-    glEnableVertexAttribArray(attributes["normal"]);
-    glVertexAttribPointer(attributes["normal"], 3, GL_FLOAT, GL_TRUE,
-        0, 0);  // Watch out for that GL_TRUE.
-    // Send vertices into vertex shader and draw mesh.
     glBindBuffer(GL_ARRAY_BUFFER, this->vertex_buffer);
+    assert(attributes.count("position"));    // Ensure position in the map.
     glEnableVertexAttribArray(attributes["position"]);
     glVertexAttribPointer(attributes["position"], 3, GL_FLOAT, GL_FALSE,
         0, 0);
