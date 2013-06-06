@@ -74,7 +74,7 @@ void render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glUseProgram(program);
     glUniformMatrix4fv(uniforms["transform"], 1, GL_FALSE, glm::value_ptr(transform));
-    glUniform3f(uniforms["light_pos"], 0.5, 0.5, -0.3);
+    glUniform3f(uniforms["light_pos"], 1.0, 1.0, 1.0);
     for (vector<CityObject*>::iterator it = objects.begin();
          it != objects.end();
          ++it)

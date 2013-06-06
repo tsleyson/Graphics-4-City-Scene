@@ -245,11 +245,6 @@ namespace City
     this->push_line(bottom_left, side_length, height, starters);
     
     this->build_mesh(starters);
-    /* debugging 
-    this->coordinates.push_back(vec3(-0.5, -0.5, 0.0));
-    this->coordinates.push_back(vec3(-0.5, 0.5, 0.0));
-    this->coordinates.push_back(vec3(0.5, -0.5, 0.0));
-    this->coordinates.push_back(vec3(0.5, 0.5, 0.0));*/
     // Initialize object coordinate matrix and vertex buffer that holds
     // vertices for this object.
     this->object_transform = mat4(1.0);
@@ -263,10 +258,12 @@ namespace City
     glBufferData(GL_ARRAY_BUFFER, this->coordinates.size()*3*sizeof(float),
         glCoords, GL_STATIC_DRAW);
     delete [] glCoords;
+    this->calculate_normals();
     glGenBuffers(1, &this->normal_buffer);
     glBindBuffer(GL_ARRAY_BUFFER, this->normal_buffer);
     glCoords = this->flatten_coords(this->average_normals);
     // debugging
+    cout << "Beginning normals" << endl;
     for (int i = 0; i < this->average_normals.size()*3; ++i)
     {
         cout << glCoords[i] << endl;
