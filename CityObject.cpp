@@ -55,36 +55,20 @@ namespace City
     }
   }
   
-/* Building class's functions */
-  void Building::push_line(vec3 first, float hinc, unsigned int height, 
-    vector<vector<vec3> >& main)
-  {
-    vector<vec3> line;
-    line.push_back(first);
-    for (unsigned int i = 0; i < height; i++)
-    {
-        //cout << i << endl;
-        line.push_back(vec3(first[0], first[1]+i*hinc, first[2]));
-    }
-    assert(line.size() > 2);
-    main.push_back(line);
-    assert(main[main.size()-1].size() > 2);
-  }
-  
   /* The mesh built by this function is based on ideas from the web site
    * http://www.gamedev.net/topic/208950-help-vert-array-mesh-with-triangle_strip/
    */
-  void Building::build_mesh(vector<vector<vec3> >& starters)
+  void CityObject::build_mesh(vector<vector<vec3> >& starters)
   {
       
   }
   
-  void Building::calculate_normals()
+  void CityObject::calculate_normals()
   {
     // Calculates an averaged normal for each vertex by finding all
     // the triangles a vertex is part of and averaging their standard
     // normals.
-    for (vector<vec3>::iterator ptit = this->coordinates.begin();
+    /*for (vector<vec3>::iterator ptit = this->coordinates.begin();
          ptit != this->coordinates.end();
          ++ptit)
     {
@@ -107,10 +91,10 @@ namespace City
         avgd /= vec3(adj_normals.size(), adj_normals.size(), adj_normals.size());
         avgd = glm::normalize(avgd);
         this->average_normals.push_back(avgd);
-    }
+    }*/
   }
   
-  Building::Building(float vertices[][3][3], size_t len)
+  CityObject::CityObject(float vertices[][3][3], size_t len)
   {
     this->len3d = len;
     this->flatten_3darray(vertices, len);
@@ -137,7 +121,7 @@ namespace City
   
   
   /* Expects shader program to be in use when called. */
-  void Building::render(map<string, unsigned int>& attributes, 
+  void CityObject::render(map<string, unsigned int>& attributes, 
             map<string, unsigned int>& uniforms)
   {
     // Precondition on this method:

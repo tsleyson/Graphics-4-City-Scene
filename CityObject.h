@@ -13,7 +13,7 @@ using glm::mat4;
 #ifndef CITY_OBJ_H
 #define CITY_OBJ_H
 namespace City
-{
+{/*
     struct Triangle
     {
         vec3 first_point;
@@ -34,20 +34,20 @@ namespace City
                 this->second_point == v ||
                 this->third_point == v;
       }
-    };
+    };*/
 
     class CityObject
     {
         protected:
         glm::mat4 object_transform;
         vector<glm::vec3> coordinates;  // The points defining the mesh.
-        vector<float> float_coords;
+        vector<float> float_coords, tex_coords;
         unsigned int vertex_buffer, normal_buffer;
         
         float* flatten_coords(vector<vec3> coords);
         void flatten_3darray(float a[][3][3], size_t);
-        virtual void build_mesh(vector<vector<vec3> >&) = 0;
-        virtual void calculate_normals() = 0;
+        void build_mesh(vector<vector<vec3> >&);
+        void calculate_normals();
             /* If it doesn't want to use anything nonlocal, just
              * make a local array and stick all the coordinates
              * in it upon rendering. In fact we can just store
@@ -63,33 +63,17 @@ namespace City
         // points. Also initialize object_transform to the identity.
         void rotate(float xi, float gamma, float zeta);
         void translate(float byx, float byy, float byz);
-        /* rotate and translate affect the object coordinates */
-        
-        virtual void render(map<string, unsigned int>&, 
-            map<string, unsigned int>&) = 0;
-    };
-    
-    class Building : public CityObject
-    {
-      private:
-      void push_line(vec3 first, float hinc, unsigned int height, 
-        vector<vector<vec3> >& main);
-      void alternate_points(vector<vec3>::iterator&, 
-        vector<vec3>::iterator&, size_t);
-      unsigned int texture, len3d;
-      vector<Triangle> triangles;
-      vector<vec3> average_normals;
-      
-      protected:
-      virtual void build_mesh(vector<vector<vec3> >& starters);
-      virtual void calculate_normals();
-      
-      public:
-      Building(float a[][3][3], size_t len);
-      ~Building() { glDeleteBuffers(1, &this->vertex_buffer); 
-                     glDeleteBuffers(1, &this->normal_buffer); }
-      virtual void render(map<string, unsigned int>&, 
-        map<string, unsigned int>&);
+            /* rotate and translate affect the object coordinates */
+
+          unsigned int len3d;
+          /*
+          vector<Triangle> triangles;
+          vector<vec3> average_normals;*/
+
+          CityObject(float a[][3][3], size_t len);
+          ~CityObject() { glDeleteBuffers(1, &this->vertex_buffer); 
+                         glDeleteBuffers(1, &this->normal_buffer); }
+        void render(map<string, unsigned int>&, map<string, unsigned int>&);
     };
 }
 #endif

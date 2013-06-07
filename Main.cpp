@@ -39,7 +39,8 @@ mat4 modelview = mat4(1.0);
 mat4 projection = mat4(1.0);
 vector<CityObject*> objects;
 int first = 1;
-
+float eye[3] = {30, 1524, 646.0f};
+float focus[3] = {30, 1524, 288};
 int main(int argc, char** argv)
 {/*
     mat4 rev = mat4(1.0);
@@ -66,9 +67,23 @@ int main(int argc, char** argv)
     uniforms["light_pos"] = glGetUniformLocation(program, "light_pos");
     glUseProgram(0);
     
-    //objects.push_back(new Building(vec3(0.0, 0.0, 0.0), 0.2, 30));
     objects.push_back(new CityObject(building_3, building_3_length));
     objects.push_back(new CityObject(misc_ground, misc_ground_length));
+    objects.push_back(new CityObject(building_1, building_1_length));
+    objects.push_back(new CityObject(building_10, building_10_length));
+    objects.push_back(new CityObject(building_6, building_6_length));
+    objects.push_back(new CityObject(building_5, building_5_length));
+    objects.push_back(new CityObject(building_5, building_5_length));
+    objects.push_back(new CityObject(building_7b, building_7b_length));
+    objects.push_back(new CityObject(building_8, building_8_length));
+    objects.push_back(new CityObject(building_9a, building_9a_length));
+    objects.push_back(new CityObject(building_9b, building_9b_length));
+    objects.push_back(new CityObject(building_12, building_12_length));
+    objects.push_back(new CityObject(building_11, building_11_length));
+    objects.push_back(new CityObject(building_4, building_4_length));
+    objects.push_back(new CityObject(roads, roads_length));
+    objects.push_back(new CityObject(building_2, building_2_length));
+    
     glutMainLoop();
     
     return 0;
@@ -78,17 +93,24 @@ void render()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glUseProgram(program);
-    modelview = glm::lookAt(vec3(0.0f, -1200.0f, -20.0f), 
-        vec3(0.0f, -1200.0f, 0.0f), vec3(1.0f, 1.0f, 0.0f));
+    modelview = glm::lookAt(vec3(eye[0], eye[1], eye[2]), 
+        vec3(focus[0], focus[1], focus[2]), vec3(1.0f, 1.0f, 0.0f));
+    
+    --focus[0];
+    --focus[1];
+    --focus[2];
+    --eye[0];
+    --eye[2];
     projection = glm::ortho(-1536.0f, 1536.0f, -1536.0f, 1536.0f, 0.0f, 646.4f);
-        // debugging
+    // debugging
     if (first-- > 0)
     for (int i = 0; i < 4; i++)
         for (int j = 0; j < 4; j++)
             cout << modelview[i][j] << endl;
+    // debugging end
     glUniformMatrix4fv(uniforms["modelview"], 1, GL_FALSE, glm::value_ptr(modelview));
     glUniformMatrix4fv(uniforms["projection"], 1, GL_FALSE, glm::value_ptr(projection));
-    glUniform3f(uniforms["light_pos"], 0.5, 0.5, -0.3);
+    glUniform3f(uniforms["light_pos"], 0.0, 400.0, 0.0);
     for (vector<CityObject*>::iterator it = objects.begin();
          it != objects.end();
          ++it)
