@@ -41,6 +41,20 @@ namespace City
     return glCoords->data();
   }
   
+  void CityObject::flatten_3darray(float array3d[][3][3], const size_t len)
+  {
+    for (int d1 = 0; d1 < len; ++d1)
+    {
+        for (int d2 = 0; d2 < 3; ++d2)
+        {
+            for (int d3 = 0; d3 < 3; ++d3)
+            {
+                this->float_coords.push_back(array3d[d1][d2][d3]);
+            }
+        }
+    }
+  }
+  
 /* Building class's functions */
   void Building::push_line(vec3 first, float hinc, unsigned int height, 
     vector<vector<vec3> >& main)
@@ -62,137 +76,7 @@ namespace City
    */
   void Building::build_mesh(vector<vector<vec3> >& starters)
   {
-      /* The starters vector contains four lines; each line is a
-       * corner of a building with a square base. This function
-       * builds a set of points for a triangle strip mesh, using
-       * degenerate triangles to stitch everything together; it
-       * also saves the points that make up an individual triangle
-       * so we can calculate an averaged normal for each vertex and
-       * do Gouraud shading.
-       */
-    vector<vec3>::iterator left, right;
-    vector<vec3> c1, c2;
-    for (int i = 1; i < 4; ++i)
-    {
-        c1 = starters.at(i-1);
-        c2 = starters.at(i);
-        left = c1.begin();
-        right = c2.begin();
-        assert(c1.size() > 2 && c2.size() > 2);
-        
-        // For making degenerate triangles; duplicate first point of
-        // new second curve.
-        if (i > 1)
-            this->coordinates.push_back(*right);
-            
-        // Push the first two points so that every point in the loop
-        // forms a new triangle.
-        this->coordinates.push_back(*left);
-        this->coordinates.push_back(*right);
-        ++left; ++right;
-        this->coordinates.push_back(*left);
-        this->coordinates.push_back(*right);
-        ++left; ++right;
-        for (; 
-             left != c1.end() && right != c2.end();
-             ++left, ++right)
-        {
-            // Add the point from the left line, then add the triangle
-            // formed by it and the previous two points. Do the same for
-            // the right line.
-            this->coordinates.push_back(*left);
-            size_t size = coordinates.size();
-            this->triangles.push_back(Triangle(coordinates.at(size-3),
-                coordinates.at(size-2), coordinates.at(size-1)));
-            this->coordinates.push_back(*right);
-            ++size;
-            this->triangles.push_back(Triangle(coordinates.at(size-3),
-                coordinates.at(size-2), coordinates.at(size-1)));
-        }
-        // We're finished with these two lines; duplicate last
-        // point on second curve for degenerate triangles. By the way,
-        // we don't bother adding degenerate triangles to the triangle
-        // list since they have no area.
-        size_t last = starters.at(i).size() - 1;
-        this->coordinates.push_back(starters.at(i).at(last));
-    }
-    // Now make the back and the top.
-    vector<vec3> last = starters[starters.size()-1],
-                 first = starters[0];
-    left = last.begin();
-    right = first.begin();
-    this->coordinates.push_back(*left);
-    this->coordinates.push_back(*right);
-    ++left; ++right;
-    this->coordinates.push_back(*left);
-    this->coordinates.push_back(*right);
-    ++left; ++right;
-    for (; 
-         left != last.end() && right != first.end();
-         ++left, ++right)
-    {
-        // Add the point from the left line, then add the triangle
-        // formed by it and the previous two points. Do the same for
-        // the right line.
-        this->coordinates.push_back(*left);
-        size_t size = coordinates.size();
-        this->triangles.push_back(Triangle(coordinates.at(size-3),
-            coordinates.at(size-2), coordinates.at(size-1)));
-        this->coordinates.push_back(*right);
-        ++size;
-        this->triangles.push_back(Triangle(coordinates.at(size-3),
-            coordinates.at(size-2), coordinates.at(size-1)));
-    }
-    // The top.
-    size_t end = starters[0].size() - 1;
-    this->coordinates.push_back(starters[0][end]);    // Bottom right.
-    this->coordinates.push_back(starters[1][end]);    // Top right.
-    this->coordinates.push_back(starters[3][end]);    // Bottom left.
-    this->coordinates.push_back(starters[2][end]);    // Top left.
-    this->triangles.push_back(Triangle(starters[0][end], starters[1][end],
-        starters[3][end]));
-    this->triangles.push_back(Triangle(starters[1][end], starters[3][end],
-        starters[2][end]));
-  }
-  
-
-  void alternate_points(vector<vec3>& c1, vector<vec3>& c2)
-  {
-    /* I made this function to prevent some code duplication, but figuring
-     * out exactly what to put inside is more complicated than I thought
-     * so for now I just concentrate on getting the code working.
-     
-    vector<vec3>::iterator left, right;
-    left = c1.begin(), right = c2.begin()
-    // For making degenerate triangles; duplicate first point of
-    // new second curve.
-    if (i > 1)
-        this->coordinates.push_back(*right);
-        
-    // Push the first two points so that every point in the loop
-    // forms a new triangle.
-    this->coordinates.push_back(*left);
-    this->coordinates.push_back(*right);
-    ++left; ++right;
-    this->coordinates.push_back(*left);
-    this->coordinates.push_back(*right);
-    ++left; ++right;
-    for (; 
-         left != c1.end() && right != c2.end();
-         ++left, ++right)
-    {
-        // Add the point from the left line, then add the triangle
-        // formed by it and the previous two points. Do the same for
-        // the right line.
-        this->coordinates.push_back(*left);
-        size_t size = coordinates.size();
-        this->triangles.push_back(Triangle(coordinates.at(size-3),
-            coordinates.at(size-2), coordinates.at(size-1)));
-        this->coordinates.push_back(*right);
-        ++size;
-        this->triangles.push_back(Triangle(coordinates.at(size-3),
-            coordinates.at(size-2), coordinates.at(size-1)));
-    }*/
+      
   }
   
   void Building::calculate_normals()
@@ -226,25 +110,10 @@ namespace City
     }
   }
   
-  Building::Building(vec3 bottom_right, float side_length, size_t height)
+  Building::Building(float vertices[][3][3], size_t len)
   {
-    // Remember: y = 0 is the ground. Assume that y = 0 in the top_left
-    // vec. bottom_right is the bottom right point of the square that forms the
-    // base of the building.
-    vector<vector<vec3> > starters;
-    this->push_line(bottom_right, side_length, height, starters);
-    
-    vec3 top_right = vec3(bottom_right[0], 0.0, bottom_right[2]+side_length);
-    this->push_line(top_right, side_length, height, starters);
-    
-    vec3 top_left = vec3(top_right[0]-side_length, 0.0, top_right[2]);
-    this->push_line(top_left, side_length, height, starters);
-    
-    vec3 bottom_left = vec3(bottom_right[0]-side_length, 0.0, 
-        bottom_right[2]);
-    this->push_line(bottom_left, side_length, height, starters);
-    
-    this->build_mesh(starters);
+    this->len3d = len;
+    this->flatten_3darray(vertices, len);
     /* debugging 
     this->coordinates.push_back(vec3(-0.5, -0.5, 0.0));
     this->coordinates.push_back(vec3(-0.5, 0.5, 0.0));
@@ -255,27 +124,15 @@ namespace City
     this->object_transform = mat4(1.0);
     glGenBuffers(1, &this->vertex_buffer);
     glBindBuffer(GL_ARRAY_BUFFER, this->vertex_buffer);
-    float* glCoords = this->flatten_coords(this->coordinates);
+    //float* glCoords = this->flatten_coords(this->coordinates);
     // debugging
-    for (int i = 0; i < this->coordinates.size()*3; ++i)
-        cout << glCoords[i] << endl;
+    for (int i = 0; i < float_coords.size(); ++i)
+        cout << float_coords[i] << endl;
     // end debugging
-    glBufferData(GL_ARRAY_BUFFER, this->coordinates.size()*3*sizeof(float),
-        glCoords, GL_STATIC_DRAW);
-    delete [] glCoords;
-    glGenBuffers(1, &this->normal_buffer);
-    glBindBuffer(GL_ARRAY_BUFFER, this->normal_buffer);
-    glCoords = this->flatten_coords(this->average_normals);
-    // debugging
-    for (int i = 0; i < this->average_normals.size()*3; ++i)
-    {
-        cout << glCoords[i] << endl;
-    }
-    //end debugging
-    glBufferData(GL_ARRAY_BUFFER, this->average_normals.size()*3*sizeof(float),
-        glCoords, GL_STATIC_DRAW);
-    delete [] glCoords;
-    glCoords = NULL;
+    //float three[] = {0.0, 0.5, 0.0, -0.5, 0.0, 0.0, 0.0, 0.0, 0.0};
+    //float three[] = {0.0, 1200.0, 0.0, -1200.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+    glBufferData(GL_ARRAY_BUFFER, float_coords.size()*sizeof(float), 
+        float_coords.data(), GL_STATIC_DRAW);
   }
   
   
@@ -287,16 +144,16 @@ namespace City
     assert(attributes.count("position") && attributes.count("normal"));
 
     // Send the normals into the vertex shader.
-    glBindBuffer(GL_ARRAY_BUFFER, this->normal_buffer);
+    /*glBindBuffer(GL_ARRAY_BUFFER, this->normal_buffer);
     glEnableVertexAttribArray(attributes["normal"]);
     glVertexAttribPointer(attributes["normal"], 3, GL_FLOAT, GL_TRUE,
-        0, 0);  // Watch out for that GL_TRUE.
+        0, 0);  // Watch out for that GL_TRUE.*/
     // Send vertices into vertex shader and draw mesh.
     glBindBuffer(GL_ARRAY_BUFFER, this->vertex_buffer);
     glEnableVertexAttribArray(attributes["position"]);
-    glVertexAttribPointer(attributes["position"], 3, GL_FLOAT, GL_FALSE,
+    glVertexAttribPointer(attributes["position"], 3, GL_FLOAT, GL_TRUE,
         0, 0);
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, this->coordinates.size());
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, float_coords.size()/3);
   }
 
 }  // End namespace City.
