@@ -1,5 +1,5 @@
 /* 
- * Vase
+ * city
  * 
  * File:   main.cpp
  * Author: rafields
@@ -31,6 +31,8 @@
 #include "array_points_FINAL.hpp"
 //#include "car_points.hpp"
 //#include "array_textures_FINAL.hpp"
+#include "BezierCurve.h"
+#include "car_points.hpp"
 
 #define PI 3.14159265
 #define X 0
@@ -60,13 +62,12 @@ float x_trans = 0,
 map<string, bool> global_flags;
 
 float camera[] = {0,		0,		3};
-float focus[] =  {0,		0 ,	    1};
-    // Note: the focus's z coordinate should just be fixed at 1.
+float focus[] =  {0,		1 ,	    1};
+    // Note: the focus's y coordinate should just be fixed at 1.
 float up[]    =  {0,		1,		0};
 	/* I have a new appreciation for the people who made Up now, knowing they had to
 	 * do this to make it.
 	 */
-//float BUILDING_TEST_NORMALIZED[BUILDING_TEST_QUADAMT][3][3];
 
 //miscellaneous globals
 GLuint prog, vert_shader, frag_shader, pos_info; //program, vert, and fragment IDs
@@ -328,8 +329,6 @@ float * generateFourthPoint(int quadID, float structure [][3][3], bool * success
 	delete pointChosen;
 
 	return retPoints;
-
-
 }
 
 int samePoints(int quadID, float structure[][3][3])
@@ -560,7 +559,7 @@ float* convert_to_cartesian(float* spherical)
  */
 void camera_move(float d_theta, float d_phi)
 {
-	// For now don't worry about lockon mode; just get
+	// For now don't worry about lock-on mode; just get
     // lookaround mode to work.
     // The vector from the origin (camera) to the point (focus) that
     // we're deviating from. Reversed when focus is origin (i.e. in
@@ -579,8 +578,8 @@ void camera_move(float d_theta, float d_phi)
         delete[] cartesian; cartesian = 0;
         delete[] spherical; spherical = 0;
     }
-    // Currently this is weird because the focus point isn't being
-    // updated.
+    // Maintains the same relationship between the camera and focus as
+    // previously existed. To change relationship, mouse and look-around.
     if (global_flags["update camera"])
     {
         camera[X] += x_trans;
