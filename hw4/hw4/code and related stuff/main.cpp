@@ -38,9 +38,6 @@
 #define X 0
 #define Y 1
 #define Z 2
-#define RHO 0
-#define THETA 1
-#define PHI 2
 
 
 using namespace std;
@@ -71,7 +68,9 @@ float up[]    =  {0,		1,		0};
 
 //miscellaneous globals
 GLuint prog, vert_shader, frag_shader, pos_info; //program, vert, and fragment IDs
+size_t path_pos = 0;
 
+float* checkpoint;
 
 void render(); //render program
 void stop(); //stops the simulation
@@ -124,6 +123,7 @@ int main(int argc, char** argv) {
     // let us do it in the global area.
     global_flags["update camera"] = false;
     global_flags["mouse down"] = false;
+    global_flags["follow car"] = false;
     glutMainLoop(); //summons a unicorn
     return 0;
 }
@@ -531,56 +531,17 @@ void findNormalFan(int spine_1, int plane_1, int spine_2, int plane_2, float * n
 
 }
 
-float* convert_to_spherical(float* cartesian)
-{
-    float* spherical = new float[3];
-    assert(spherical);
-    double r = sqrt(cartesian[X]*cartesian[X] + 
-                     cartesian[Y]*cartesian[Y] +
-                     cartesian[Z]*cartesian[Z]);
-    spherical[RHO] = r;
-    spherical[THETA] = acos(cartesian[Z]/r);
-    spherical[PHI] = atan2(cartesian[Y], cartesian[X]);
-    return spherical;
-}
-
-float* convert_to_cartesian(float* spherical)
-{
-    float* cartesian = new float[3];
-    assert(cartesian);
-    cartesian[X] = spherical[RHO]*sin(spherical[THETA])*cos(spherical[PHI]);
-    cartesian[Y] = spherical[RHO]*sin(spherical[THETA])*sin(spherical[PHI]);
-    cartesian[Z] = spherical[RHO]*cos(spherical[THETA]);
-    // Or possibly just 1, to make sure it's fixed.
-}
-
 /* Convert camera and focus into spherical coordinates,
  * then operate on them to achieve rotation.
  */
-void camera_move(float d_theta, float d_phi)
+void camera_move()
 {
-	// For now don't worry about lock-on mode; just get
-    // lookaround mode to work.
-    // The vector from the origin (camera) to the point (focus) that
-    // we're deviating from. Reversed when focus is origin (i.e. in
-    // lock-on mode.
-    if (d_theta != 0.0f || d_phi != 0.0f)
+    if (global_flags["follow car"])
     {
-        float current[] = {focus[X] - camera[X], focus[Y] - camera[Y],
-                            focus[Z] - camera[Z]};
-        float* spherical = convert_to_spherical(current);
-        spherical[THETA] += d_theta;
-        spherical[PHI] += d_phi;
-        float* cartesian = convert_to_cartesian(spherical);
-        focus[X] = cartesian[X];
-        focus[Y] = cartesian[Y];
-        focus[Z] = cartesian[Z];
-        delete[] cartesian; cartesian = 0;
-        delete[] spherical; spherical = 0;
+        checkpoint = path_points[path_pos];
+        
     }
-    // Maintains the same relationship between the camera and focus as
-    // previously existed. To change relationship, mouse and look-around.
-    if (global_flags["update camera"])
+    else if (global_flags["update camera"])
     {
         camera[X] += x_trans;
         camera[Z] += z_trans;
@@ -606,7 +567,7 @@ void render()
     glLoadIdentity();                       //initializes modelview matrix with identity
 
 	//handle translating here
-    camera_move(0.0, 0.0);
+    camera_move();
     gluLookAt(
     	camera[X], camera[Y], camera[Z],
 		focus[X],  focus[Y],  focus[Z],
@@ -645,8 +606,33 @@ void render()
 	drawStructure(roads, roads_length);
 	drawStructure(misc_ground, misc_ground_length);
 	drawStructure(patch, patch_length);
+    glPushMatrix();
+    glTranslatef(-350, 0, 0);
+    drawStructure(car_points, car_points_length);
+    glPopMatrix();
+    glColor4f(0.7, 0.5, 0.3, 1.0);
+    glBegin(GL_LINE_STRIP); // Change to loop when you're done.
+        // Up to end of first straightaway.
+        glVertex3f(-230, 0, 0);
+        glVertex3f(-230, 0, 800);
+        // Starting to turn. 850 comes just to the intersection edge.
+        glVertex3f(-210, 0, 900);
+        glVertex3f(-150, 0, 950);
+        glVertex3f(-120, 0, 950);
+        /* control points for first Bezier curve.*/
+        glVertex3f(950, 0, 950);
+        glVertex3f(1000, 0, 900);
+        glVertex3f(1000, 0, -395);
+        glVertex3f(950, 0, -450);
+        /* controls for second Bezier curve. */
+        glVertex3f(-170, 0, -450);
+        glVertex3f(-230, 0, -400);
+        glVertex3f(-230, 0, 0);
+        /* controls for third Bezier curve. */
+    glEnd();
 	glPopMatrix();
 	
+    // Drawing in the guide lines.
 	glScaled(100, 100, 100);
 	glColor4f(1.0, 0, 0, 1);
 	glBegin(GL_LINES);
@@ -665,6 +651,14 @@ void render()
 	glVertex3f(0, 0, -1);
 	glVertex3f(0, 0, 1);
 	glEnd();
+
+    //glColor4f(0.3, 0.2, 0.5, 1);
+    float inters[] = {
+        1056, -464, 73,
+        -192, -464, 73,
+        -192, 960, 73,
+        1056, 960, 73
+    };
 
 	glPopMatrix();
  
@@ -769,6 +763,11 @@ void keyUp(unsigned char key, int, int)
 		x_trans = -0.1;
         global_flags["update camera"] = true;
 	}
+    if (key == 'c')
+    {
+        global_flags["follow car"] = !global_flags["follow car"];
+        checkpoint = path_points[path_pos];
+    }
 }
 
 
