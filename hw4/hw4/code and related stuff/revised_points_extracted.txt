@@ -1,0 +1,959 @@
+
+			"material" "METAL/METALWALL013A"
+			"material" "METAL/METALWALL013A"
+			"material" "METAL/METALWALL013A"
+			"material" "METAL/METALWALL013A"
+			"material" "METAL/METALWALL013A"
+			"material" "METAL/METALWALL013A"
+			"material" "METAL/METALWALL013A"
+			"material" "METAL/METALWALL013A"
+			"material" "METAL/METALWALL013A"
+			"material" "METAL/METALWALL013A"
+			"material" "METAL/METALWALL013A"
+			"material" "METAL/METALWALL013A"
+			"material" "METAL/METALWALL013A"
+			"material" "METAL/METALWALL013A"
+			"material" "METAL/METALWALL013A"
+			"material" "METAL/METALWALL013A"
+			"material" "METAL/METALWALL013A"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(14 1540 288) (870 1540 288) (870 1540 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(870 1524 288) (14 1524 288) (14 1524 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1232 1174 142) (-1232 1264 142) (-1142 1264 142)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-1232 1264 136) (-1232 1174 136) (-1142 1174 136)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-1142 1264 136) (-1142 1174 136) (-1142 1174 142)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-1142 1174 136) (-1232 1174 136) (-1232 1174 142)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-1154 1180 64) (-1154 1186 64) (-1154 1186 136)"
+			"material" "CONCRETE/CONCRETEFLOOR024A"
+			
+			"plane" "(-1148 1186 64) (-1148 1180 64) (-1148 1180 136)"
+			"material" "CONCRETE/CONCRETEFLOOR024A"
+			
+			"plane" "(-1154 1186 64) (-1148 1186 64) (-1148 1186 136)"
+			"material" "CONCRETE/CONCRETEFLOOR024A"
+			
+			"plane" "(-1148 1180 64) (-1154 1180 64) (-1154 1180 136)"
+			"material" "CONCRETE/CONCRETEFLOOR024A"
+			
+			"plane" "(-1424 1168 160) (-1424 1456 160) (-1232 1456 160)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-1424 1456 64) (-1424 1456 160) (-1424 1168 160)"
+			"material" "DE_CBBLE/WOODCEILING01"
+			
+			"plane" "(-1232 1168 64) (-1232 1168 160) (-1232 1456 160)"
+			"material" "DE_CBBLE/WOODCEILING01"
+			
+			"plane" "(-1232 1456 64) (-1232 1456 160) (-1424 1456 160)"
+			"material" "DE_CBBLE/WOODCEILING01"
+			
+			"plane" "(-1424 1168 64) (-1424 1168 160) (-1232 1168 160)"
+			"material" "DE_CBBLE/WOODCEILING01"
+			
+			"plane" "(-1232 1264 160) (-1232 1456 160) (-1136 1456 160)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-1136 1264 64) (-1136 1264 160) (-1136 1456 160)"
+			"material" "DE_CBBLE/WOODCEILING01"
+			
+			"plane" "(-1136 1456 64) (-1136 1456 160) (-1232 1456 160)"
+			"material" "DE_CBBLE/WOODCEILING01"
+			
+			"plane" "(-1232 1264 64) (-1232 1264 160) (-1136 1264 160)"
+			"material" "DE_CBBLE/WOODCEILING01"
+			
+			"plane" "(528 -304 304) (528 -288 304) (880 -288 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(528 -288 288) (528 -304 288) (880 -304 288)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(528 -304 288) (528 -288 288) (528 -288 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(880 -288 288) (880 -304 288) (880 -304 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(528 -288 288) (880 -288 288) (880 -288 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(880 -304 288) (528 -304 288) (528 -304 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(864 -288 304) (864 96 304) (880 96 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(864 96 288) (864 -288 288) (880 -288 288)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(864 -288 288) (864 96 288) (864 96 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(880 96 288) (880 -288 288) (880 -288 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(528 -288 304) (528 96 304) (544 96 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(528 96 288) (528 -288 288) (544 -288 288)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(528 -288 288) (528 96 288) (528 96 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(544 96 288) (544 -288 288) (544 -288 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(528 96 304) (528 112 304) (880 112 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(528 112 288) (528 96 288) (880 96 288)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(528 96 288) (528 112 288) (528 112 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(880 112 288) (880 96 288) (880 96 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(528 112 288) (880 112 288) (880 112 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(880 96 288) (528 96 288) (528 96 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(1344 776 304) (1264 776 304) (1264 792 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1344 792 288) (1264 792 288) (1264 776 288)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1344 776 288) (1264 776 288) (1264 776 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1264 792 288) (1344 792 288) (1344 792 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1392 776 304) (1344 776 304) (1344 792 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1392 792 288) (1344 792 288) (1344 776 288)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1392 776 288) (1344 776 288) (1344 776 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1344 792 288) (1392 792 288) (1392 792 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1520 776 304) (1392 776 304) (1392 792 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1520 792 288) (1392 792 288) (1392 776 288)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1520 776 288) (1392 776 288) (1392 776 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1392 792 288) (1520 792 288) (1520 792 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1344 -312 304) (1264 -312 304) (1264 -296 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1344 -296 288) (1264 -296 288) (1264 -312 288)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1344 -312 288) (1264 -312 288) (1264 -312 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1264 -296 288) (1344 -296 288) (1344 -296 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1520 -312 304) (1392 -312 304) (1392 -296 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1520 -296 288) (1392 -296 288) (1392 -312 288)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1520 -312 288) (1392 -312 288) (1392 -312 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1392 -296 288) (1520 -296 288) (1520 -296 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1392 -312 304) (1344 -312 304) (1344 -296 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1392 -296 288) (1344 -296 288) (1344 -312 288)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1392 -312 288) (1344 -312 288) (1344 -312 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1344 -296 288) (1392 -296 288) (1392 -296 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1264 -312 304) (1248 -312 304) (1248 -80 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1248 -80 288) (1248 -312 288) (1264 -312 288)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1264 -312 288) (1248 -312 288) (1248 -312 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1248 -312 288) (1248 -80 288) (1248 -80 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1264 -80 288) (1264 -312 288) (1264 -312 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1248 -80 304) (1248 256 304) (1264 256 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1248 256 288) (1248 -80 288) (1264 -80 288)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1248 -80 288) (1248 256 288) (1248 256 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1264 256 288) (1264 -80 288) (1264 -80 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1248 256 304) (1248 792 304) (1264 792 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1264 792 288) (1248 792 288) (1248 256 288)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1248 792 288) (1264 792 288) (1264 792 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1248 256 288) (1248 792 288) (1248 792 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1264 792 288) (1264 256 288) (1264 256 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1536 -312 304) (1520 -312 304) (1520 -80 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1520 -80 288) (1520 -312 288) (1536 -312 288)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1536 -312 288) (1520 -312 288) (1520 -312 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1520 -312 288) (1520 -80 288) (1520 -80 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1536 -80 288) (1536 -312 288) (1536 -312 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1520 -80 304) (1520 256 304) (1536 256 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1520 256 288) (1520 -80 288) (1536 -80 288)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1520 -80 288) (1520 256 288) (1520 256 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1536 256 288) (1536 -80 288) (1536 -80 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1520 256 304) (1520 792 304) (1536 792 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1536 792 288) (1520 792 288) (1520 256 288)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1520 792 288) (1536 792 288) (1536 792 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1520 256 288) (1520 792 288) (1520 792 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1536 792 288) (1536 256 288) (1536 256 304)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1232 -994 142) (-1232 -904 142) (-1142 -904 142)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-1232 -904 136) (-1232 -994 136) (-1142 -994 136)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-1142 -904 136) (-1142 -994 136) (-1142 -994 142)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-1142 -994 136) (-1232 -994 136) (-1232 -994 142)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-1154 -988 64) (-1154 -982 64) (-1154 -982 136)"
+			"material" "CONCRETE/CONCRETEFLOOR005A"
+			
+			"plane" "(-1148 -982 64) (-1148 -988 64) (-1148 -988 136)"
+			"material" "CONCRETE/CONCRETEFLOOR005A"
+			
+			"plane" "(-1154 -982 64) (-1148 -982 64) (-1148 -982 136)"
+			"material" "CONCRETE/CONCRETEFLOOR005A"
+			
+			"plane" "(-1148 -988 64) (-1154 -988 64) (-1154 -988 136)"
+			"material" "CONCRETE/CONCRETEFLOOR005A"
+			
+			"plane" "(-1424 -1000 160) (-1424 -712 160) (-1232 -712 160)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-1424 -712 64) (-1424 -712 160) (-1424 -1000 160)"
+			"material" "DE_PIRANESI/WOODFLOOR02"
+			
+			"plane" "(-1232 -1000 64) (-1232 -1000 160) (-1232 -712 160)"
+			"material" "DE_PIRANESI/WOODFLOOR02"
+			
+			"plane" "(-1232 -712 64) (-1232 -712 160) (-1424 -712 160)"
+			"material" "DE_PIRANESI/WOODFLOOR02"
+			
+			"plane" "(-1424 -1000 64) (-1424 -1000 160) (-1232 -1000 160)"
+			"material" "DE_PIRANESI/WOODFLOOR02"
+			
+			"plane" "(-1232 -904 160) (-1232 -712 160) (-1136 -712 160)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-1136 -904 64) (-1136 -904 160) (-1136 -712 160)"
+			"material" "DE_PIRANESI/WOODFLOOR02"
+			
+			"plane" "(-1136 -712 64) (-1136 -712 160) (-1232 -712 160)"
+			"material" "DE_PIRANESI/WOODFLOOR02"
+			
+			"plane" "(-1232 -904 64) (-1232 -904 160) (-1136 -904 160)"
+			"material" "DE_PIRANESI/WOODFLOOR02"
+			
+			"plane" "(-1232 -1410 142) (-1232 -1320 142) (-1142 -1320 142)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-1232 -1320 136) (-1232 -1410 136) (-1142 -1410 136)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-1142 -1320 136) (-1142 -1410 136) (-1142 -1410 142)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-1142 -1410 136) (-1232 -1410 136) (-1232 -1410 142)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-1154 -1404 64) (-1154 -1398 64) (-1154 -1398 136)"
+			"material" "CONCRETE/CONCRETEFLOOR005A"
+			
+			"plane" "(-1148 -1398 64) (-1148 -1404 64) (-1148 -1404 136)"
+			"material" "CONCRETE/CONCRETEFLOOR005A"
+			
+			"plane" "(-1154 -1398 64) (-1148 -1398 64) (-1148 -1398 136)"
+			"material" "CONCRETE/CONCRETEFLOOR005A"
+			
+			"plane" "(-1148 -1404 64) (-1154 -1404 64) (-1154 -1404 136)"
+			"material" "CONCRETE/CONCRETEFLOOR005A"
+			
+			"plane" "(-1424 -1416 160) (-1424 -1128 160) (-1232 -1128 160)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-1424 -1128 64) (-1424 -1128 160) (-1424 -1416 160)"
+			"material" "DE_CBBLE/WOODCEILING01"
+			
+			"plane" "(-1232 -1416 64) (-1232 -1416 160) (-1232 -1128 160)"
+			"material" "DE_CBBLE/WOODCEILING01"
+			
+			"plane" "(-1232 -1128 64) (-1232 -1128 160) (-1424 -1128 160)"
+			"material" "DE_CBBLE/WOODCEILING01"
+			
+			"plane" "(-1424 -1416 64) (-1424 -1416 160) (-1232 -1416 160)"
+			"material" "DE_CBBLE/WOODCEILING01"
+			
+			"plane" "(-1232 -1320 160) (-1232 -1128 160) (-1136 -1128 160)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-1136 -1320 64) (-1136 -1320 160) (-1136 -1128 160)"
+			"material" "DE_CBBLE/WOODCEILING01"
+			
+			"plane" "(-1136 -1128 64) (-1136 -1128 160) (-1232 -1128 160)"
+			"material" "DE_CBBLE/WOODCEILING01"
+			
+			"plane" "(-1232 -1320 64) (-1232 -1320 160) (-1136 -1320 160)"
+			"material" "DE_CBBLE/WOODCEILING01"
+			
+			"plane" "(1208 1432 160) (1496 1432 160) (1496 1240 160)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(1496 1432 64) (1496 1432 160) (1208 1432 160)"
+			"material" "DE_PIRANESI/WOODFLOOR02"
+			
+			"plane" "(1208 1240 64) (1208 1240 160) (1496 1240 160)"
+			"material" "DE_PIRANESI/WOODFLOOR02"
+			
+			"plane" "(1496 1240 64) (1496 1240 160) (1496 1432 160)"
+			"material" "DE_PIRANESI/WOODFLOOR02"
+			
+			"plane" "(1208 1432 64) (1208 1432 160) (1208 1240 160)"
+			"material" "DE_PIRANESI/WOODFLOOR02"
+			
+			"plane" "(1304 1240 160) (1496 1240 160) (1496 1144 160)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(1304 1144 64) (1304 1144 160) (1496 1144 160)"
+			"material" "DE_PIRANESI/WOODFLOOR02"
+			
+			"plane" "(1496 1144 64) (1496 1144 160) (1496 1240 160)"
+			"material" "DE_PIRANESI/WOODFLOOR02"
+			
+			"plane" "(1304 1240 64) (1304 1240 160) (1304 1144 160)"
+			"material" "DE_PIRANESI/WOODFLOOR02"
+			
+			"plane" "(-304 1536 64) (-80 1536 64) (-80 1072 64)"
+			"material" "DE_AZTEC/ROAD01"
+			
+			"plane" "(1168 1536 64) (1536 1536 64) (1536 1072 64)"
+			"material" "CONCRETE/CONCRETEFLOOR026A"
+			
+			"plane" "(-768 1104 304) (-768 1120 304) (-416 1120 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-768 1120 288) (-768 1104 288) (-416 1104 288)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-768 1104 288) (-768 1120 288) (-768 1120 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-416 1120 288) (-416 1104 288) (-416 1104 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-768 1120 288) (-416 1120 288) (-416 1120 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-416 1104 288) (-768 1104 288) (-768 1104 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-432 1120 304) (-432 1504 304) (-416 1504 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-432 1504 288) (-432 1120 288) (-416 1120 288)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-432 1120 288) (-432 1504 288) (-432 1504 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-416 1504 288) (-416 1120 288) (-416 1120 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-768 1120 304) (-768 1504 304) (-752 1504 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-768 1504 288) (-768 1120 288) (-752 1120 288)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-768 1120 288) (-768 1504 288) (-768 1504 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-752 1504 288) (-752 1120 288) (-752 1120 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-768 1504 304) (-768 1520 304) (-416 1520 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-768 1520 288) (-768 1504 288) (-416 1504 288)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-768 1504 288) (-768 1520 288) (-768 1520 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-416 1520 288) (-416 1504 288) (-416 1504 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-768 1520 288) (-416 1520 288) (-416 1520 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-416 1504 288) (-768 1504 288) (-768 1504 304)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-784 -1344 576) (-784 -640 576) (-544 -640 576)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-784 -1344 64) (-784 -640 64) (-784 -640 576)"
+			"material" "CONCRETE/CONCRETEWALL046D"
+			
+			"plane" "(-784 -640 64) (-544 -640 64) (-544 -640 576)"
+			"material" "CONCRETE/CONCRETEWALL046D"
+			
+			"plane" "(-544 -1344 64) (-784 -1344 64) (-784 -1344 576)"
+			"material" "CONCRETE/CONCRETEWALL046D"
+			
+			"plane" "(-544 -640 64) (-544 -1344 64) (-544 -1344 576)"
+			"material" "CONCRETE/CONCRETEWALL046D"
+			
+			"plane" "(-544 -832 576) (-192 -832 576) (-192 -1344 576)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(-544 -832 64) (-192 -832 64) (-192 -832 576)"
+			"material" "CONCRETE/CONCRETEWALL046D"
+			
+			"plane" "(-192 -1344 64) (-544 -1344 64) (-544 -1344 576)"
+			"material" "CONCRETE/CONCRETEWALL046D"
+			
+			"plane" "(-192 -640 576) (48 -640 576) (48 -1344 576)"
+			"material" "CS_ITALY/CUICEILA"
+			
+			"plane" "(48 -640 64) (48 -1344 64) (48 -1344 576)"
+			"material" "CONCRETE/CONCRETEWALL046D"
+			
+			"plane" "(-192 -640 64) (48 -640 64) (48 -640 576)"
+			"material" "CONCRETE/CONCRETEWALL046D"
+			
+			"plane" "(48 -1344 64) (-192 -1344 64) (-192 -1344 576)"
+			"material" "CONCRETE/CONCRETEWALL046D"
+			
+			"plane" "(-192 -1344 64) (-192 -640 64) (-192 -640 576)"
+			"material" "CONCRETE/CONCRETEWALL046D"
+			
+			"plane" "(-1440 -696 168) (-1424 -696 168) (-1424 -1016 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1440 -1016 152) (-1424 -1016 152) (-1424 -696 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1440 -696 168) (-1440 -1016 168) (-1440 -1016 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 -696 152) (-1424 -1016 152) (-1424 -1016 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 -696 168) (-1440 -696 168) (-1440 -696 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 -1016 152) (-1440 -1016 152) (-1440 -1016 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 -696 168) (-1136 -696 168) (-1136 -712 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 -712 152) (-1136 -712 152) (-1136 -696 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 -696 168) (-1424 -712 168) (-1424 -712 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1136 -696 152) (-1136 -712 152) (-1136 -712 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1136 -696 168) (-1424 -696 168) (-1424 -696 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1136 -712 152) (-1424 -712 152) (-1424 -712 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1136 -696 168) (-1120 -696 168) (-1120 -920 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1136 -920 152) (-1120 -920 152) (-1120 -696 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1136 -696 168) (-1136 -920 168) (-1136 -920 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1120 -696 152) (-1120 -920 152) (-1120 -920 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1120 -696 168) (-1136 -696 168) (-1136 -696 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1120 -920 152) (-1136 -920 152) (-1136 -920 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1232 -904 168) (-1136 -904 168) (-1136 -920 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1232 -920 152) (-1136 -920 152) (-1136 -904 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1232 -904 168) (-1232 -920 168) (-1232 -920 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1136 -904 152) (-1136 -920 152) (-1136 -920 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1136 -904 168) (-1232 -904 168) (-1232 -904 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1136 -920 152) (-1232 -920 152) (-1232 -920 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1232 -920 168) (-1216 -920 168) (-1216 -1000 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1232 -1000 152) (-1216 -1000 152) (-1216 -920 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1232 -920 168) (-1232 -1000 168) (-1232 -1000 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1216 -920 152) (-1216 -1000 152) (-1216 -1000 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1216 -920 168) (-1232 -920 168) (-1232 -920 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1216 -1000 152) (-1232 -1000 152) (-1232 -1000 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 -1000 168) (-1216 -1000 168) (-1216 -1016 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 -1016 152) (-1216 -1016 152) (-1216 -1000 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 -1000 168) (-1424 -1016 168) (-1424 -1016 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1216 -1000 152) (-1216 -1016 152) (-1216 -1016 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1216 -1000 168) (-1424 -1000 168) (-1424 -1000 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1216 -1016 152) (-1424 -1016 152) (-1424 -1016 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 -1112 168) (-1136 -1112 168) (-1136 -1128 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 -1128 152) (-1136 -1128 152) (-1136 -1112 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 -1112 168) (-1424 -1128 168) (-1424 -1128 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1136 -1112 152) (-1136 -1128 152) (-1136 -1128 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1136 -1112 168) (-1424 -1112 168) (-1424 -1112 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1136 -1128 152) (-1424 -1128 152) (-1424 -1128 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1136 -1112 168) (-1120 -1112 168) (-1120 -1336 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1136 -1336 152) (-1120 -1336 152) (-1120 -1112 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1136 -1112 168) (-1136 -1336 168) (-1136 -1336 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1120 -1112 152) (-1120 -1336 152) (-1120 -1336 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1120 -1112 168) (-1136 -1112 168) (-1136 -1112 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1120 -1336 152) (-1136 -1336 152) (-1136 -1336 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1232 -1320 168) (-1136 -1320 168) (-1136 -1336 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1232 -1336 152) (-1136 -1336 152) (-1136 -1320 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1232 -1320 168) (-1232 -1336 168) (-1232 -1336 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1136 -1320 152) (-1136 -1336 152) (-1136 -1336 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1136 -1320 168) (-1232 -1320 168) (-1232 -1320 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1136 -1336 152) (-1232 -1336 152) (-1232 -1336 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1232 -1336 168) (-1216 -1336 168) (-1216 -1416 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1232 -1416 152) (-1216 -1416 152) (-1216 -1336 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1232 -1336 168) (-1232 -1416 168) (-1232 -1416 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1216 -1336 152) (-1216 -1416 152) (-1216 -1416 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1216 -1336 168) (-1232 -1336 168) (-1232 -1336 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1216 -1416 152) (-1232 -1416 152) (-1232 -1416 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 -1416 168) (-1216 -1416 168) (-1216 -1432 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 -1432 152) (-1216 -1432 152) (-1216 -1416 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 -1416 168) (-1424 -1432 168) (-1424 -1432 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1216 -1416 152) (-1216 -1432 152) (-1216 -1432 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1216 -1416 168) (-1424 -1416 168) (-1424 -1416 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1216 -1432 152) (-1424 -1432 152) (-1424 -1432 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1440 -1112 168) (-1424 -1112 168) (-1424 -1432 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1440 -1432 152) (-1424 -1432 152) (-1424 -1112 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1440 -1112 168) (-1440 -1432 168) (-1440 -1432 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 -1112 152) (-1424 -1432 152) (-1424 -1432 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 -1112 168) (-1440 -1112 168) (-1440 -1112 152)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 -1432 152) (-1440 -1432 152) (-1440 -1432 168)"
+			"material" "CONCRETE/CONCRETEWALL070A"
+			
+			"plane" "(-1424 1472 168) (-1136 1472 168) (-1136 1456 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1424 1456 152) (-1136 1456 152) (-1136 1472 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1424 1472 168) (-1424 1456 168) (-1424 1456 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1136 1472 152) (-1136 1456 152) (-1136 1456 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1136 1472 168) (-1424 1472 168) (-1424 1472 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1136 1456 152) (-1424 1456 152) (-1424 1456 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1136 1472 168) (-1120 1472 168) (-1120 1248 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1136 1248 152) (-1120 1248 152) (-1120 1472 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1136 1472 168) (-1136 1248 168) (-1136 1248 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1120 1472 152) (-1120 1248 152) (-1120 1248 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1120 1472 168) (-1136 1472 168) (-1136 1472 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1120 1248 152) (-1136 1248 152) (-1136 1248 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1232 1264 168) (-1136 1264 168) (-1136 1248 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1232 1248 152) (-1136 1248 152) (-1136 1264 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1232 1264 168) (-1232 1248 168) (-1232 1248 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1136 1264 152) (-1136 1248 152) (-1136 1248 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1136 1264 168) (-1232 1264 168) (-1232 1264 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1136 1248 152) (-1232 1248 152) (-1232 1248 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1232 1248 168) (-1216 1248 168) (-1216 1168 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1232 1168 152) (-1216 1168 152) (-1216 1248 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1232 1248 168) (-1232 1168 168) (-1232 1168 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1216 1248 152) (-1216 1168 152) (-1216 1168 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1216 1248 168) (-1232 1248 168) (-1232 1248 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1216 1168 152) (-1232 1168 152) (-1232 1168 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1424 1168 168) (-1216 1168 168) (-1216 1152 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1424 1152 152) (-1216 1152 152) (-1216 1168 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1424 1168 168) (-1424 1152 168) (-1424 1152 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1216 1168 152) (-1216 1152 152) (-1216 1152 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1216 1168 168) (-1424 1168 168) (-1424 1168 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1216 1152 152) (-1424 1152 152) (-1424 1152 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1440 1472 168) (-1424 1472 168) (-1424 1152 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1440 1152 152) (-1424 1152 152) (-1424 1472 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1440 1472 168) (-1440 1152 168) (-1440 1152 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1424 1472 152) (-1424 1152 152) (-1424 1152 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1424 1472 168) (-1440 1472 168) (-1440 1472 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(-1424 1152 152) (-1440 1152 152) (-1440 1152 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1512 1432 168) (1512 1144 168) (1496 1144 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1496 1432 152) (1496 1144 152) (1512 1144 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1512 1432 168) (1496 1432 168) (1496 1432 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1512 1144 152) (1496 1144 152) (1496 1144 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1512 1144 168) (1512 1432 168) (1512 1432 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1496 1144 152) (1496 1432 152) (1496 1432 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1512 1144 168) (1512 1128 168) (1288 1128 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1288 1144 152) (1288 1128 152) (1512 1128 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1512 1144 168) (1288 1144 168) (1288 1144 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1512 1128 152) (1288 1128 152) (1288 1128 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1512 1128 168) (1512 1144 168) (1512 1144 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1288 1128 152) (1288 1144 152) (1288 1144 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1304 1240 168) (1304 1144 168) (1288 1144 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1288 1240 152) (1288 1144 152) (1304 1144 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1304 1240 168) (1288 1240 168) (1288 1240 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1304 1144 152) (1288 1144 152) (1288 1144 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1304 1144 168) (1304 1240 168) (1304 1240 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1288 1144 152) (1288 1240 152) (1288 1240 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1288 1240 168) (1288 1224 168) (1208 1224 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1208 1240 152) (1208 1224 152) (1288 1224 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1288 1240 168) (1208 1240 168) (1208 1240 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1288 1224 152) (1208 1224 152) (1208 1224 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1288 1224 168) (1288 1240 168) (1288 1240 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1208 1224 152) (1208 1240 152) (1208 1240 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1208 1432 168) (1208 1224 168) (1192 1224 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1192 1432 152) (1192 1224 152) (1208 1224 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1208 1432 168) (1192 1432 168) (1192 1432 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1208 1224 152) (1192 1224 152) (1192 1224 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1208 1224 168) (1208 1432 168) (1208 1432 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1192 1224 152) (1192 1432 152) (1192 1432 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1512 1448 168) (1512 1432 168) (1192 1432 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1192 1448 152) (1192 1432 152) (1512 1432 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1512 1448 168) (1192 1448 168) (1192 1448 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1512 1432 152) (1192 1432 152) (1192 1432 168)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1512 1432 168) (1512 1448 168) (1512 1448 152)"
+			"material" "METAL/METALWALL013A"
+			
+			"plane" "(1192 1432 152) (1192 1448 152) (1192 1448 168)"
+			"material" "METAL/METALWALL013A"
+			

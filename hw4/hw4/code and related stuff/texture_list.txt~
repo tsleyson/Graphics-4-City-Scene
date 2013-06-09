@@ -1,0 +1,12 @@
+TEX_WALL_FLAT_2 		swamp/brick/swampbrickwall001c
+TEX_WALL_FLAT_1,		concrete/wall010
+TEX_WALL_FLAT_GENERIC_1,	concrete/concretewall002
+TEX_WALL_FLAT_GENERIC_2,	concrete/concretewall004
+TEX_WALL_DECORATIVE_FLAT,	brick/brickwall001
+TEX_ROOF_GENERIC,		building_template/roof_template001a
+TEX_WOOD_ROOF,			wood/wood_wall005b
+TEX_WOOD_WALL_1,		wood/wood_wall006
+TEX_WOOD_WALL_2,		wood/wood_wall006
+TEX_ROAD,			concrete/concretefloor006
+TEX_WALKWAY,			nature/grass_03
+TEX_OFFICE_WALL,		brick/brickwall001b

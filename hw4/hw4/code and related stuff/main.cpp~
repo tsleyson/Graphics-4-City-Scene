@@ -1,5 +1,5 @@
 /* 
- * city
+ * Vase
  * 
  * File:   main.cpp
  * Author: rafields
@@ -25,21 +25,14 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
-#include <map>
-#include <string>
-#include <cassert>
 #include "array_points_FINAL.hpp"
 //#include "car_points.hpp"
 //#include "array_textures_FINAL.hpp"
-#include "BezierCurve.h"
-#include "car_points.hpp"
-#include "path_points.hpp"
 
 #define PI 3.14159265
 #define X 0
 #define Y 1
 #define Z 2
-#define signum(x) (x > 0? 1 : (x == 0? 0 : -1))
 
 
 using namespace std;
@@ -54,26 +47,12 @@ int prev_x = 0,
 bool x_right = false,
 	 y_up = false;
 float x_trans = 0,
-	  z_trans = 0;
-// All global flags will go in here, and should be defined
-// at the beginning; that way, later on, we know that if a flag
-// isn't in the map, it doesn't exist.
-map<string, bool> global_flags;
-
-float camera[] = {0,		0,		3};
-float focus[] =  {0,		1 ,	    1};
-    // Note: the focus's y coordinate should just be fixed at 1.
-float up[]    =  {0,		1,		0};
-	/* I have a new appreciation for the people who made Up now, knowing they had to
-	 * do this to make it.
-	 */
+	  y_trans = 0;
+//float BUILDING_TEST_NORMALIZED[BUILDING_TEST_QUADAMT][3][3];
 
 //miscellaneous globals
 GLuint prog, vert_shader, frag_shader, pos_info; //program, vert, and fragment IDs
-size_t path_pos = 0;
-float x_progress = 0, z_progress = 0;
-const float path_inc = 0.3
-float* checkpoint;
+
 
 void render(); //render program
 void stop(); //stops the simulation
@@ -105,7 +84,7 @@ int main(int argc, char** argv) {
     glutInit(&argc, argv); //initialize glut
     glutInitWindowSize(500, 500); //set window size
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE); //going with RGB, double buffer, depth buffer
-    glutCreateWindow("City - rafields - 996270151");
+    glutCreateWindow("Vase - rafields - 996270151");
 	
 
 	//setLighting(); //set up the lighting
@@ -122,11 +101,7 @@ int main(int argc, char** argv) {
     GLenum err = glewInit();
     loadShader(); //loads our shader programsAll the initialization occurs here.
 
-    // Initialize global flags here, since C++ is too retarded to
-    // let us do it in the global area.
-    global_flags["update camera"] = false;
-    global_flags["mouse down"] = false;
-    global_flags["follow car"] = false;
+    
     glutMainLoop(); //summons a unicorn
     return 0;
 }
@@ -332,6 +307,8 @@ float * generateFourthPoint(int quadID, float structure [][3][3], bool * success
 	delete pointChosen;
 
 	return retPoints;
+
+
 }
 
 int samePoints(int quadID, float structure[][3][3])
@@ -534,28 +511,15 @@ void findNormalFan(int spine_1, int plane_1, int spine_2, int plane_2, float * n
 
 }
 
-/* Convert camera and focus into spherical coordinates,
- * then operate on them to achieve rotation.
+
+/*
+ * Rotates 5 curves around the y axis and sews them together into a coherent, unified set of points
+ * Return format: retPoints[spine (rotation point)][y-plane][x, y, z coords]
  */
-void camera_move()
-{
-    if (global_flags["follow car"])
-    {
-        checkpoint = path_points[path_pos];
-        
-    }
-    else if (global_flags["update camera"])
-    {
-        camera[X] += x_trans;
-        camera[Z] += z_trans;
-        focus[X] += x_trans;
-        focus[Z] += z_trans;
-        x_trans = 0.0f; z_trans = 0.0f;
-        global_flags["update camera"] = false;
-    }
-}
 
-
+/*
+ * Renders the image (not the mandelbrot- that's done by the shader)
+ */
 void render()
 {    
     //glClearColor(1.0f, 1.0f, 1.0f, 1.0f);   //default "empty"/background color is set to white
@@ -570,11 +534,10 @@ void render()
     glLoadIdentity();                       //initializes modelview matrix with identity
 
 	//handle translating here
-    camera_move();
     gluLookAt(
-    	camera[X], camera[Y], camera[Z],
-		focus[X],  focus[Y],  focus[Z],
-		up[X],     up[Y],     up[Z]);  
+		0,		0,		3,
+		0,		1 ,	0,
+		0,		1,		0);  
 
 	//glPushMatrix();
 	//glUseProgram(prog);
@@ -609,33 +572,8 @@ void render()
 	drawStructure(roads, roads_length);
 	drawStructure(misc_ground, misc_ground_length);
 	drawStructure(patch, patch_length);
-    glPushMatrix();
-    glTranslatef(-350, 0, 0);
-    drawStructure(car_points, car_points_length);
-    glPopMatrix();
-    glColor4f(0.7, 0.5, 0.3, 1.0);
-    glBegin(GL_LINE_STRIP); // Change to loop when you're done.
-        // Up to end of first straightaway.
-        glVertex3f(-230, 0, 0);
-        glVertex3f(-230, 0, 800);
-        // Starting to turn. 850 comes just to the intersection edge.
-        glVertex3f(-210, 0, 900);
-        glVertex3f(-150, 0, 950);
-        glVertex3f(-120, 0, 950);
-        /* control points for first Bezier curve.*/
-        glVertex3f(950, 0, 950);
-        glVertex3f(1000, 0, 900);
-        glVertex3f(1000, 0, -395);
-        glVertex3f(950, 0, -450);
-        /* controls for second Bezier curve. */
-        glVertex3f(-170, 0, -450);
-        glVertex3f(-230, 0, -400);
-        glVertex3f(-230, 0, 0);
-        /* controls for third Bezier curve. */
-    glEnd();
 	glPopMatrix();
 	
-    // Drawing in the guide lines.
 	glScaled(100, 100, 100);
 	glColor4f(1.0, 0, 0, 1);
 	glBegin(GL_LINES);
@@ -655,14 +593,6 @@ void render()
 	glVertex3f(0, 0, 1);
 	glEnd();
 
-    //glColor4f(0.3, 0.2, 0.5, 1);
-    float inters[] = {
-        1056, -464, 73,
-        -192, -464, 73,
-        -192, 960, 73,
-        1056, 960, 73
-    };
-
 	glPopMatrix();
  
 
@@ -678,7 +608,7 @@ void render()
 void mouseMotion(int x, int y)
 {
 	//if the left mouse button is held down, rotate by the difference between (x, y when moving in a new direction) and cur(x, y)
-	if (global_flags["mouse down"])
+	if (mouseDown)
 	{
 		int diff_x = prev_x - x; //negative = going right
 		int diff_y = prev_y - y; //negative = going up
@@ -724,7 +654,7 @@ void mouse(int button, int state, int x, int y)
 {
     if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)   
     {
-        global_flags["mouse down"] = true;
+        mouseDown = true;
 		cur_x = x;
 		cur_y = y;
 		prev_x = x;
@@ -732,7 +662,7 @@ void mouse(int button, int state, int x, int y)
     }
     if(button == GLUT_LEFT_BUTTON && state == GLUT_UP)   
     {
-        global_flags["mouse down"] = false;
+        mouseDown = false;
     }
 }
 
@@ -748,30 +678,20 @@ void keyUp(unsigned char key, int, int)
     } 
 	if(key == 'w')
 	{
-		z_trans = -0.1;
-        global_flags["update camera"] = true;
-	}
-	if(key == 'd')
-	{
-		x_trans = 0.1;
-        global_flags["update camera"] = true;
-	}
-	if(key == 's')
-	{
-		z_trans = 0.1;
-        global_flags["update camera"] = true;
+		y_trans -= 0.1;
 	}
 	if(key == 'a')
 	{
-		x_trans = -0.1;
-        global_flags["update camera"] = true;
+		x_trans += 0.1;
 	}
-    if (key == 'c')
-    {
-        global_flags["follow car"] = !global_flags["follow car"];
-        checkpoint = path_points[path_pos];
-        path_x = signum();
-    }
+	if(key == 's')
+	{
+		y_trans += 0.1;
+	}
+	if(key == 'd')
+	{
+		x_trans -= 0.1;
+	}
 }
 
 
