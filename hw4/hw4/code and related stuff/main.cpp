@@ -40,6 +40,7 @@
 #define Y 1
 #define Z 2
 #define signum(x) (x > 0? 1 : (x == 0? 0 : -1))
+#define x_or(a, b) (a && !b) || (!a && b)
 
 
 using namespace std;
@@ -72,8 +73,12 @@ float up[]    =  {0,		1,		0};
 GLuint prog, vert_shader, frag_shader, pos_info; //program, vert, and fragment IDs
 size_t path_pos = 0;
 float x_progress = 0, z_progress = 0;
-const float path_inc = 0.3
-float* checkpoint;
+int x_sign = 1, z_sign = 1;
+const float path_inc = 1;
+const float inc = 10;
+float  current[3];    // Current point on path.
+float checkpoint[3];
+//float* next_check;
 
 void render(); //render program
 void stop(); //stops the simulation
@@ -81,10 +86,11 @@ void keyUp(unsigned char key, int, int); //key catcher
 void update(); //updates the frame
 void loadShader(); //loads the shader programs
 void setUniformFloat(const char *varName, float value); //sets the uniforms
+void checkpoint_update();
 char* readFile(const char *); //reads the shaders
 void mouse(int button, int state, int x, int y); //mouse button catcher
 void mouseMotion(int x, int y); //mouse motion catcher
-void normalize(const float coords[][3][3], float normalized[][3][3], int quadCount); //normalizes coords
+void normalize(const float coords[][3][3], float normalized[][3][3], int quadCount); //s coords
 void findNormal(int quadID, float structure[][3][3], int p1, int p2, int p3, float * normal); //returns the surface normal for a trimesh
 void findNormal(int quadID, float structure[][3][3], int p1, int p2, float * point_4, float * normal); //returns the surface normal for a trimesh
 void findNormalFan(int spine_1, int plane_1, int spine_2, int plane_2, float * normal); //returns the surface normals for a trifan
@@ -127,6 +133,7 @@ int main(int argc, char** argv) {
     global_flags["update camera"] = false;
     global_flags["mouse down"] = false;
     global_flags["follow car"] = false;
+    checkpoint_update();
     glutMainLoop(); //summons a unicorn
     return 0;
 }
@@ -534,15 +541,58 @@ void findNormalFan(int spine_1, int plane_1, int spine_2, int plane_2, float * n
 
 }
 
-/* Convert camera and focus into spherical coordinates,
- * then operate on them to achieve rotation.
- */
+void copy_point(float* dest, float* src)
+{
+    dest[X] = src[X];
+    dest[Y] = src[Y];
+    dest[Z] = src[Z];
+}
+
+void checkpoint_update()
+{
+    copy_point(current, checkpoint);
+    copy_point(checkpoint, path_points[++path_pos % path_points_length]);
+    int xdiff = checkpoint[X] - current[X];
+    int zdiff = checkpoint[Z] - current[Z];
+    x_sign = signum(xdiff);
+    z_sign = signum(zdiff);/*
+    cout << "Checkpoint reached: " << current[X] << " " 
+         << current[Y] << " " << current[Z] << endl;*/
+}
+
+void move_car()
+{
+    assert(checkpoint); // Precondition
+    float xdiff = checkpoint[X] - current[X];
+    float zdiff = checkpoint[Z] - current[Z];
+    if (abs(xdiff) > path_inc && abs(zdiff) > path_inc)
+    {
+        current[X] += x_sign * path_inc;
+        current[Z] += z_sign * path_inc;/*
+        cout << "Normal Point: " << current[X] << " " 
+         << current[Y] << " " << current[Z] << endl;*/
+    }
+    else if (x_or(abs(xdiff)<path_inc, abs(zdiff<path_inc)))
+    {
+        checkpoint_update();
+    }
+    else
+    {
+        checkpoint_update();
+    }
+    assert(checkpoint); // Postcondition.
+}
+
 void camera_move()
 {
     if (global_flags["follow car"])
     {
-        checkpoint = path_points[path_pos];
-        
+        camera[X] = current[X];
+        camera[Z] = current[Z];
+        camera[Y] = 1;
+        focus[X] = checkpoint[X];
+        focus[Y] = checkpoint[Y];
+        focus[Z] = checkpoint[Z];
     }
     else if (global_flags["update camera"])
     {
@@ -570,11 +620,11 @@ void render()
     glLoadIdentity();                       //initializes modelview matrix with identity
 
 	//handle translating here
-    camera_move();
+    /*
     gluLookAt(
     	camera[X], camera[Y], camera[Z],
 		focus[X],  focus[Y],  focus[Z],
-		up[X],     up[Y],     up[Z]);  
+		up[X],     up[Y],     up[Z]);  */
 
 	//glPushMatrix();
 	//glUseProgram(prog);
@@ -589,9 +639,14 @@ void render()
 	glPushMatrix();
 	glRotatef(rot_y, 1, 0, 0);
 	glRotatef(rot_x, 0, 1, 0);
-
-	glPushMatrix();
 	glScaled(0.002, 0.002, 0.002);
+    move_car();
+    camera_move();
+    gluLookAt(
+    	camera[X], camera[Y], camera[Z],
+		focus[X],  focus[Y],  focus[Z],
+		up[X],     up[Y],     up[Z]);
+	glPushMatrix();
 	drawStructure(building_1, building_1_length);
 	drawStructure(building_2, building_2_length);
 	drawStructure(building_3, building_3_length);
@@ -748,29 +803,43 @@ void keyUp(unsigned char key, int, int)
     } 
 	if(key == 'w')
 	{
-		z_trans = -0.1;
+		z_trans = -inc;
         global_flags["update camera"] = true;
 	}
 	if(key == 'd')
 	{
-		x_trans = 0.1;
+		x_trans = inc;
         global_flags["update camera"] = true;
 	}
 	if(key == 's')
 	{
-		z_trans = 0.1;
+		z_trans = inc;
         global_flags["update camera"] = true;
 	}
 	if(key == 'a')
 	{
-		x_trans = -0.1;
+		x_trans = -inc;
         global_flags["update camera"] = true;
 	}
     if (key == 'c')
     {
         global_flags["follow car"] = !global_flags["follow car"];
-        checkpoint = path_points[path_pos];
-        path_x = signum();
+        if (global_flags["follow car"])
+        {
+
+            camera[X] = current[X];
+            camera[Z] = current[Z];
+            camera[Y] = 1;
+        }
+        else
+        {
+            camera[X] = 0;
+            camera[Z] = 3;
+            camera[Y] = 0;
+            focus[X] = 0;
+            focus[Y] = 1;
+            focus[Z] = 1;
+        }
     }
 }
 
